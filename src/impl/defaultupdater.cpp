@@ -48,7 +48,7 @@ void DefaultUpdater::checkAndShowUI() {
             msgBox.setText(tr("There are currently no updates available."));
             msgBox.exec();
         } else {
-            if (getStatus() == Updater::Status::UpdateAvailable) {
+            if (getStatus() != Updater::Status::UpdateAvailable) {
                 downloadUpdate();
             }
             showDialog();
