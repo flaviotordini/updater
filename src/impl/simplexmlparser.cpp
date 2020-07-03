@@ -6,9 +6,7 @@ namespace updater::impl {
 
 SimpleXmlParser::SimpleXmlParser(Updater *parent) : Parser(parent) {}
 
-} // namespace updater::impl
-
-void updater::impl::SimpleXmlParser::parse(const QByteArray &bytes) {
+void SimpleXmlParser::parse(const QByteArray &bytes) {
     error = false;
     errorMessage.clear();
 
@@ -17,12 +15,17 @@ void updater::impl::SimpleXmlParser::parse(const QByteArray &bytes) {
     while (!reader.atEnd()) {
         reader.readNext();
         if (reader.isStartElement()) {
-            if (reader.name() == QLatin1String("release")) {
+            if (reader.name() == rootElementName) {
                 while (!reader.atEnd()) {
                     reader.readNext();
-                    if (reader.isStartElement() && reader.name() == QLatin1String("version")) {
+                    if (reader.isStartElement() && reader.name() == versionElementName) {
                         updater->setVersion(reader.readElementText());
-                        break;
+                    } else if (reader.isStartElement() && reader.name() == urlElementName) {
+                        QString url = reader.readElementText();
+                        for (const auto &arg : qAsConst(urlArguments)) {
+                            url = url.arg(arg);
+                        }
+                        updater->setDownloadUrl(url);
                     }
                 }
             }
@@ -33,3 +36,5 @@ void updater::impl::SimpleXmlParser::parse(const QByteArray &bytes) {
         errorMessage = reader.errorString();
     }
 }
+
+} // namespace updater::impl

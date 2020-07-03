@@ -30,6 +30,8 @@ public:
 
     void setCheckInterval(const qint64 &value);
 
+    /// A fixed download url. In alternative, the Parser impl can set the download url from the
+    /// manifest
     void setDownloadUrl(const QUrl &value) { downloadUrl = value; }
 
     void setInstaller(Installer *value) { installer = value; }
