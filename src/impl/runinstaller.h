@@ -5,7 +5,7 @@
 
 #include "installer.h"
 
-namespace updater::impl {
+namespace updater {
 
 class Updater;
 
@@ -24,6 +24,6 @@ private:
     QStringList arguments;
 };
 
-} // namespace updater::impl
+} // namespace updater
 
 #endif // UPDATER_IMPL_RUNINSTALLER_H

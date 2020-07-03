@@ -9,7 +9,7 @@ namespace {
 const QString updateCheckKey = "updateCheck";
 }
 
-namespace updater::impl {
+namespace updater {
 
 Checker::Checker(Updater *updater, QObject *parent) : QObject(parent), updater(updater) {}
 
@@ -57,4 +57,4 @@ qint64 Checker::getLastCheck() {
     return settings.value(updateCheckKey).toInt();
 }
 
-} // namespace updater::impl
+} // namespace updater

@@ -6,7 +6,7 @@
 
 #include "default_updater.h"
 
-namespace updater::impl {
+namespace updater {
 
 class DownloadWidget : public QWidget {
     Q_OBJECT
@@ -39,6 +39,6 @@ private:
     DownloadWidget *downloadWidget;
 };
 
-} // namespace updater::impl
+} // namespace updater
 
 #endif // UPDATER_IMPL_DIALOG_H

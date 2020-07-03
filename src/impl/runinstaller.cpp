@@ -4,7 +4,7 @@
 
 #include "default_updater.h"
 
-namespace updater::impl {
+namespace updater {
 
 RunInstaller::RunInstaller(Updater *updater) : Installer(updater) {}
 
@@ -13,4 +13,4 @@ void RunInstaller::start(const QString &filename) {
     QDesktopServices::openUrl(QUrl("file:///" + filename));
 }
 
-} // namespace updater::impl
+} // namespace updater

@@ -2,7 +2,7 @@
 
 #include <QDesktopServices>
 
-namespace updater::impl {
+namespace updater {
 
 void Downloader::download(const QUrl &url) {
     const QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
@@ -85,4 +85,4 @@ void Downloader::stop() {
     emit error("Canceled");
 }
 
-} // namespace updater::impl
+} // namespace updater

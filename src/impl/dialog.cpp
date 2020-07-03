@@ -6,7 +6,7 @@ namespace {
 static const int padding = 15;
 } // namespace
 
-namespace updater::impl {
+namespace updater {
 
 DownloadWidget::DownloadWidget(const QString &message, QDialog *parent)
     : QWidget(parent) {
@@ -152,4 +152,4 @@ QWidget *Dialog::messageWidget() {
     return w;
 }
 
-} // namespace updater::impl
+} // namespace updater

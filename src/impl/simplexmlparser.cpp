@@ -2,7 +2,7 @@
 
 #include "default_updater.h"
 
-namespace updater::impl {
+namespace updater {
 
 SimpleXmlParser::SimpleXmlParser(Updater *parent) : Parser(parent) {}
 
@@ -37,4 +37,4 @@ void SimpleXmlParser::parse(const QByteArray &bytes) {
     }
 }
 
-} // namespace updater::impl
+} // namespace updater

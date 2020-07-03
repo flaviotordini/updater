@@ -3,7 +3,7 @@
 
 #include <QtCore>
 
-namespace updater::impl {
+namespace updater {
 
 class Updater;
 
@@ -25,6 +25,6 @@ protected:
     Updater *updater;
 };
 
-} // namespace updater::impl
+} // namespace updater
 
 #endif // UPDATER_IMPL_INSTALLER_H

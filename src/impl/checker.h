@@ -3,7 +3,7 @@
 
 #include <QtNetwork>
 
-namespace updater::impl {
+namespace updater {
 
 class Updater;
 
@@ -29,6 +29,6 @@ private:
     QString errorMessage;
 };
 
-} // namespace updater::impl
+} // namespace updater
 
 #endif // UPDATER_IMPL_CHECKER_H

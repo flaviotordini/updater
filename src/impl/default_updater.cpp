@@ -6,7 +6,7 @@
 #include "installer.h"
 #include "runinstaller.h"
 
-namespace updater::impl {
+namespace updater {
 
 Updater::Updater() {
     checkTimer = new QTimer(this);
@@ -132,4 +132,4 @@ void Updater::showDialog() {
     dialog->show();
 }
 
-} // namespace updater::impl
+} // namespace updater

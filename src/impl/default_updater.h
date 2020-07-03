@@ -3,7 +3,7 @@
 
 #include "updater.h"
 
-namespace updater::impl {
+namespace updater {
 
 class Downloader;
 class Dialog;
@@ -71,6 +71,6 @@ private:
     QTimer *checkTimer;
 };
 
-} // namespace updater::impl
+} // namespace updater
 
 #endif // UPDATER_IMPL_UPDATER_H

@@ -5,7 +5,7 @@
 
 #include "parser.h"
 
-namespace updater::impl {
+namespace updater {
 
 class Updater;
 
@@ -40,6 +40,6 @@ private:
     QStringList urlArguments;
 };
 
-} // namespace updater::impl
+} // namespace updater
 
 #endif // SIMPLEXMLPARSER_H

@@ -5,7 +5,7 @@
 
 #include "http.h"
 
-namespace updater::impl {
+namespace updater {
 
 class Downloader : public QObject {
     Q_OBJECT
@@ -24,6 +24,6 @@ private:
     QFile file;
 };
 
-} // namespace updater::impl
+} // namespace updater
 
 #endif // UPDATER_IMPL_DOWNLOADER_H

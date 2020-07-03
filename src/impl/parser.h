@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-namespace updater::impl {
+namespace updater {
 
 class Updater;
 
@@ -26,6 +26,6 @@ protected:
     QString errorMessage;
 };
 
-} // namespace updater::impl
+} // namespace updater
 
 #endif // UPDATER_IMPL_PARSER_H
