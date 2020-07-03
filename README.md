@@ -1,10 +1,10 @@
-# A cross-platorm updater for Qt apps
+# An updater for Qt apps
 
 This is an extensible updater for Qt apps. It can wrap Sparkle on macOS and use its own implementation on Windows and Linux. I use it in my apps at https://flavio.tordini.org .
 
 ## Design
 
-The main interface is [Updater](https://github.com/flaviotordini/updater/blob/master/src/updater.h). A shared Updater subclass instance should be set on startup using Updater::setInstance(). Available implementations are:
+The main interface is [Updater](https://github.com/flaviotordini/updater/blob/master/src/updater.h). A shared Updater subclass instance should be set on startup using `Updater::setInstance()`. Available implementations are:
 
 - [`updater::impl::Updater`](https://github.com/flaviotordini/updater/blob/master/src/impl/default_updater.h), the default Qt-based implementation.
 
