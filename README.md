@@ -22,7 +22,7 @@ The main interface is [Updater](https://github.com/flaviotordini/updater/blob/ma
 
 ## Entension Points
 
-[updater::impl::Updater](https://github.com/flaviotordini/updater/blob/master/src/impl/default_updater.h) has a number of extension points so it can adapted to different release manifest formats and update mechanisms.
+[updater::impl::Updater](https://github.com/flaviotordini/updater/blob/master/src/impl/default_updater.h) has a number of extension points so it can be adapted to different release manifest formats and update mechanisms.
 
 ### Parser
 
