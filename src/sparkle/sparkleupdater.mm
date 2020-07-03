@@ -1,4 +1,4 @@
-#include "sparkle_updater.h"
+#include "sparkleupdater.h"
 
 #import <SUAppcastItem.h>
 #import <SUUpdater.h>

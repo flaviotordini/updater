@@ -12,9 +12,8 @@ macx:!contains(DEFINES, UPDATER_NO_SPARKLE) {
     DEPENDPATH += $$PWD/src/sparkle
     LIBS += -F/Library/Frameworks -framework Sparkle
     INCLUDEPATH += /Library/Frameworks/Sparkle.framework/Headers
-    HEADERS += $$PWD/src/sparkle/sparkle_updater.h
-    OBJECTIVE_SOURCES += $$PWD/src/sparkle/sparkle_updater.mm
-
+    HEADERS += $$PWD/src/sparkle/sparkleupdater.h
+    OBJECTIVE_SOURCES += $$PWD/src/sparkle/sparkleupdater.mm
 } else {
     DEFINES += UPDATER_DEFAULT
     QT *= network
