@@ -6,9 +6,9 @@ This is an extensible updater for Qt apps. It can wrap Sparkle on macOS and use 
 
 The main interface is [Updater](https://github.com/flaviotordini/updater/blob/master/src/updater.h). A shared Updater subclass instance should be set on startup using `Updater::setInstance()`. Available implementations are:
 
-- [`updater::impl::Updater`](https://github.com/flaviotordini/updater/blob/master/src/impl/default_updater.h), the default Qt-based implementation.
+- [`updater::DefaultUpdater`](https://github.com/flaviotordini/updater/blob/master/src/impl/defaultupdater.h), the default Qt-based implementation.
 
-- [`updater::sparkle::Updater`](https://github.com/flaviotordini/updater/blob/master/src/sparkle/sparkle_updater.h), a Sparkle-based implementation for macOS
+- [`updater::SparkleUpdater`](https://github.com/flaviotordini/updater/blob/master/src/sparkle/sparkleupdater.h), a Sparkle-based implementation for macOS
 
 ## User Interface
 
@@ -22,11 +22,20 @@ The main interface is [Updater](https://github.com/flaviotordini/updater/blob/ma
 
 ## Entension Points
 
-[updater::impl::Updater](https://github.com/flaviotordini/updater/blob/master/src/impl/default_updater.h) has a number of extension points so it can be adapted to different release manifest formats and update mechanisms.
+[updater::DefaultUpdater](https://github.com/flaviotordini/updater/blob/master/src/impl/defaultupdater.h) has a number of extension points so it can be adapted to different release manifest formats and update mechanisms.
 
 ### Parser
 
+Implement Parser to parse your own manifest format. There two ready-to-use Parsers:
+
+- TODO [updater::AppCastParser](https://github.com/flaviotordini/updater/blob/master/src/impl/appcastparser.h)
+- [updater::SimpleXmlParser](https://github.com/flaviotordini/updater/blob/master/src/impl/simplexmlparser.h). This is a very simple XML format
+
 ### Installer
+
+Installer is the abstraction that is responsible to prepare and run the updater process. Currently the only available Installer implementation is [updater::RunInstaller](https://github.com/flaviotordini/updater/blob/master/src/impl/runinstaller.h). It just runs an executable update payload, optionally with arguments.
+
+Installer can be implemented in other ways, for example an Installer that unzips a payload and moves files. Or one that invokes an update helper.
 
 ## Build Instructions
 
@@ -77,15 +86,15 @@ This is a real-world example of setting up the shared Updater instance:
 ```
 #include "updater.h"
 #ifdef UPDATER_SPARKLE
-#include "sparkle_updater.h"
+#include "sparkleupdater.h"
 #else
-#include "default_updater.h"
+#include "defaultupdater.h"
 #endif
 
 #ifdef UPDATER_SPARKLE
-    Updater::setInstance(new updater::sparkle::Updater());
+    Updater::setInstance(new updater::SparkleUpdater());
 #else
-    auto updater = new updater::impl::Updater();
+    auto updater = new updater::DefaultUpdater();
     updater->setManifestUrl(myAppCastUrl);
     Updater::setInstance(updater);
 #endif
@@ -105,7 +114,6 @@ You can use this library under the GPLv3 license terms. If you do, you're welcom
 For commercial projects I ask for a one-time license fee, contact me at flavio.tordini@gmail.com
 
 ## TODO
-- RunInstaller: run process with arguments
 - Appcast parser
 - Finish README
 - Finish Dialog UI
