@@ -7,7 +7,7 @@
 
 namespace updater {
 
-class Updater;
+class DefaultUpdater;
 
 /**
  * Format example:
@@ -25,7 +25,7 @@ class SimpleXmlParser : public Parser {
     Q_OBJECT
 
 public:
-    explicit SimpleXmlParser(Updater *parent);
+    explicit SimpleXmlParser(DefaultUpdater *parent);
     void parse(const QByteArray &bytes);
 
     void setRootElementName(const QString &value) { rootElementName = value; }

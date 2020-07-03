@@ -1,6 +1,6 @@
 #include "checker.h"
 
-#include "default_updater.h"
+#include "defaultupdater.h"
 #include "http.h"
 #include "parser.h"
 #include "simplexmlparser.h"
@@ -11,7 +11,7 @@ const QString updateCheckKey = "updateCheck";
 
 namespace updater {
 
-Checker::Checker(Updater *updater, QObject *parent) : QObject(parent), updater(updater) {}
+Checker::Checker(DefaultUpdater *updater, QObject *parent) : QObject(parent), updater(updater) {}
 
 void Checker::check() {
     error = false;

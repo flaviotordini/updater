@@ -5,7 +5,7 @@
 
 namespace updater {
 
-class Updater;
+class DefaultUpdater;
 
 /**
  * Implement this interface to parse your custom manifest format
@@ -20,8 +20,8 @@ public:
     QString getErrorMessage() const { return errorMessage; };
 
 protected:
-    explicit Parser(Updater *parent = nullptr) : updater(parent){};
-    Updater *updater;
+    explicit Parser(DefaultUpdater *parent = nullptr) : updater(parent){};
+    DefaultUpdater *updater;
     bool error = false;
     QString errorMessage;
 };

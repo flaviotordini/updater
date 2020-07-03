@@ -10,11 +10,11 @@ class Dialog;
 class Installer;
 class Parser;
 
-class Updater : public ::Updater {
+class DefaultUpdater : public ::Updater {
     Q_OBJECT
 
 public:
-    Updater();
+    DefaultUpdater();
 
     QString getAppName() const { return appName; }
     void setAppName(const QString &value) { appName = value; }

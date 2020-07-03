@@ -4,7 +4,7 @@
 #include <QtNetwork>
 #include <QtWidgets>
 
-#include "default_updater.h"
+#include "defaultupdater.h"
 
 namespace updater {
 
@@ -27,14 +27,14 @@ class Dialog : public QDialog {
     Q_OBJECT
 
 public:
-    Dialog(Updater *updater, QWidget *parent);
+    Dialog(DefaultUpdater *updater, QWidget *parent);
 
 private:
     void showWidget(QWidget *widget);
     QWidget *setupDownloadWidget();
     QWidget *messageWidget();
 
-    Updater *updater;
+    DefaultUpdater *updater;
     QStackedLayout *stackedLayout;
     DownloadWidget *downloadWidget;
 };

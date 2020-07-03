@@ -23,7 +23,7 @@ macx:!contains(DEFINES, UPDATER_NO_SPARKLE) {
 
     HEADERS += \
     $$PWD/src/impl/checker.h \
-    $$PWD/src/impl/default_updater.h \
+    $$PWD/src/impl/defaultupdater.h \
     $$PWD/src/impl/dialog.h \
     $$PWD/src/impl/downloader.h \
     $$PWD/src/impl/installer.h \
@@ -33,7 +33,7 @@ macx:!contains(DEFINES, UPDATER_NO_SPARKLE) {
 
     SOURCES +=  \
     $$PWD/src/impl/checker.cpp \
-    $$PWD/src/impl/default_updater.cpp \
+    $$PWD/src/impl/defaultupdater.cpp \
     $$PWD/src/impl/dialog.cpp \
     $$PWD/src/impl/downloader.cpp \
     $$PWD/src/impl/runinstaller.cpp \

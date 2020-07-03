@@ -2,11 +2,11 @@
 
 #include <QDesktopServices>
 
-#include "default_updater.h"
+#include "defaultupdater.h"
 
 namespace updater {
 
-RunInstaller::RunInstaller(Updater *updater) : Installer(updater) {}
+RunInstaller::RunInstaller(DefaultUpdater *updater) : Installer(updater) {}
 
 void RunInstaller::start(const QString &filename) {
     // TODO use updaterArgs for silent install on Windows

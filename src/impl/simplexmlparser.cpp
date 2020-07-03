@@ -1,10 +1,10 @@
 #include "simplexmlparser.h"
 
-#include "default_updater.h"
+#include "defaultupdater.h"
 
 namespace updater {
 
-SimpleXmlParser::SimpleXmlParser(Updater *parent) : Parser(parent) {}
+SimpleXmlParser::SimpleXmlParser(DefaultUpdater *parent) : Parser(parent) {}
 
 void SimpleXmlParser::parse(const QByteArray &bytes) {
     error = false;

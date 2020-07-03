@@ -1,4 +1,4 @@
-#include "default_updater.h"
+#include "defaultupdater.h"
 
 #include "checker.h"
 #include "dialog.h"
@@ -8,7 +8,7 @@
 
 namespace updater {
 
-Updater::Updater() {
+DefaultUpdater::DefaultUpdater() {
     checkTimer = new QTimer(this);
     checkTimer->setInterval(checkInterval);
     checkTimer->setTimerType(Qt::VeryCoarseTimer);
@@ -32,12 +32,12 @@ Updater::Updater() {
     checkTimer->start();
 }
 
-void Updater::setCheckInterval(const qint64 &value) {
+void DefaultUpdater::setCheckInterval(const qint64 &value) {
     checkInterval = value;
     checkTimer->setInterval(checkInterval);
 }
 
-void Updater::checkAndShowUI() {
+void DefaultUpdater::checkAndShowUI() {
     auto checker = new Checker(this);
     connect(checker, &Checker::done, this, [this, checker] {
         if (getStatus() == Updater::Status::UpToDate) {
@@ -59,7 +59,7 @@ void Updater::checkAndShowUI() {
     checker->check();
 }
 
-void Updater::checkAndMaybeShowUI() {
+void DefaultUpdater::checkAndMaybeShowUI() {
     auto checker = new Checker(this);
     connect(checker, &Checker::done, this, [this, checker] {
         if (getStatus() != Updater::Status::UpToDate) {
@@ -70,13 +70,13 @@ void Updater::checkAndMaybeShowUI() {
     checker->check();
 }
 
-void Updater::checkWithoutUI() {
+void DefaultUpdater::checkWithoutUI() {
     auto checker = new Checker(this);
     connect(checker, &Checker::done, this, [checker] { checker->deleteLater(); });
     checker->check();
 }
 
-void Updater::update() {
+void DefaultUpdater::update() {
     if (!installer) {
         installer = new RunInstaller(this);
     }
@@ -84,7 +84,7 @@ void Updater::update() {
     installer->start(downloadedFilename);
 }
 
-Downloader *Updater::downloadUpdate() {
+Downloader *DefaultUpdater::downloadUpdate() {
     if (downloader) return downloader;
     if (!downloadedFilename.isEmpty()) {
         qDebug() << "Update already downloded";
@@ -124,7 +124,7 @@ Downloader *Updater::downloadUpdate() {
     return downloader;
 }
 
-void Updater::showDialog() {
+void DefaultUpdater::showDialog() {
     if (!dialog) {
         dialog = new Dialog(this, qApp->activeWindow());
         connect(dialog, &QWidget::destroyed, this, [this] { dialog = nullptr; });

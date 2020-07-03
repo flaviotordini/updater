@@ -5,13 +5,13 @@
 
 namespace updater {
 
-class Updater;
+class DefaultUpdater;
 
 class Checker : public QObject {
     Q_OBJECT
 
 public:
-    explicit Checker(Updater *updater, QObject *parent = nullptr);
+    explicit Checker(DefaultUpdater *updater, QObject *parent = nullptr);
 
     void check();
     bool hasError() const { return error; };
@@ -23,7 +23,7 @@ signals:
     void done();
 
 private:
-    Updater *updater;
+    DefaultUpdater *updater;
 
     bool error = false;
     QString errorMessage;

@@ -45,7 +45,7 @@ void DownloadWidget::setErrorMessage(const QString &message) {
     errorLabel->show();
 }
 
-Dialog::Dialog(Updater *updater, QWidget *parent)
+Dialog::Dialog(DefaultUpdater *updater, QWidget *parent)
     : QDialog(parent), updater(updater), downloadWidget(nullptr) {
     setWindowModality(Qt::WindowModal);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -145,7 +145,7 @@ QWidget *Dialog::messageWidget() {
 
     QPushButton *updateButton =
             buttonBox->addButton(tr("Download Update"), QDialogButtonBox::AcceptRole);
-    connect(updateButton, &QPushButton::clicked, updater, &Updater::downloadUpdate);
+    connect(updateButton, &QPushButton::clicked, updater, &DefaultUpdater::downloadUpdate);
 
     layout->addWidget(buttonBox);
 

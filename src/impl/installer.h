@@ -5,7 +5,7 @@
 
 namespace updater {
 
-class Updater;
+class DefaultUpdater;
 
 /**
  * Implement this interface to create your own installer mechanism
@@ -15,14 +15,14 @@ class Installer : public QObject {
     Q_OBJECT
 
 public:
-    Installer(Updater *updater) : updater(updater){};
+    Installer(DefaultUpdater *updater) : updater(updater){};
     virtual void start(const QString &filename) = 0;
 
 signals:
     void error(const QString &message);
 
 protected:
-    Updater *updater;
+    DefaultUpdater *updater;
 };
 
 } // namespace updater
