@@ -77,9 +77,9 @@
 
 @end
 
-namespace updater::sparkle {
+namespace updater {
 
-Updater::Updater() {
+SparkleUpdater::SparkleUpdater() {
     SparkleDelegate *delegate = [[SparkleDelegate alloc] init];
     [delegate setUpdater:this];
     [[SUUpdater sharedUpdater] setDelegate:delegate];
@@ -87,28 +87,28 @@ Updater::Updater() {
     [SUUpdater sharedUpdater].automaticallyDownloadsUpdates = YES;
 }
 
-bool Updater::getAutomaticDownload() const {
+bool SparkleUpdater::getAutomaticDownload() const {
     return [SUUpdater sharedUpdater].automaticallyDownloadsUpdates;
 }
 
-void Updater::setAutomaticDownload(bool value) {
+void SparkleUpdater::setAutomaticDownload(bool value) {
     [SUUpdater sharedUpdater].automaticallyDownloadsUpdates = value;
 }
 
-void Updater::checkAndShowUI() {
+void SparkleUpdater::checkAndShowUI() {
     [[SUUpdater sharedUpdater] checkForUpdates:nil];
 }
 
-void Updater::checkAndMaybeShowUI() {
+void SparkleUpdater::checkAndMaybeShowUI() {
     [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
 }
 
-void Updater::checkWithoutUI() {
+void SparkleUpdater::checkWithoutUI() {
     [[SUUpdater sharedUpdater] checkForUpdateInformation];
 }
 
-void Updater::update() {
+void SparkleUpdater::update() {
     [[SUUpdater sharedUpdater] installUpdatesIfAvailable];
 }
 
-} // namespace updater::sparkle
+} // namespace updater

@@ -3,13 +3,13 @@
 
 #include "updater.h"
 
-namespace updater::sparkle {
+namespace updater {
 
-class Updater : public ::Updater {
+class SparkleUpdater : public ::Updater {
     Q_OBJECT
 
 public:
-    Updater();
+    SparkleUpdater();
 
     bool getAutomaticDownload() const;
     void setAutomaticDownload(bool value);
@@ -22,6 +22,6 @@ protected slots:
     void update();
 };
 
-} // namespace updater::sparkle
+} // namespace updater
 
 #endif // SPARKLE_UPDATER_H
