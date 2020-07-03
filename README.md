@@ -6,9 +6,9 @@ This is an extensible updater for Qt apps. It can wrap Sparkle on macOS and use 
 
 The main interface is [Updater](https://github.com/flaviotordini/updater/blob/master/src/updater.h). A shared Updater subclass instance should be set on startup using Updater::setInstance(). Available implementations are:
 
-- [updater::impl::Updater](https://github.com/flaviotordini/updater/blob/master/src/impl/default_updater.h), the default Qt-based implementation.
+- [`updater::impl::Updater`](https://github.com/flaviotordini/updater/blob/master/src/impl/default_updater.h), the default Qt-based implementation.
 
-- [updater::sparkle::Updater](https://github.com/flaviotordini/updater/blob/master/src/sparkle/sparkle_updater.h), a Sparkle-based implementation for macOS
+- [`updater::sparkle::Updater`](https://github.com/flaviotordini/updater/blob/master/src/sparkle/sparkle_updater.h), a Sparkle-based implementation for macOS
 
 ## User Interface
 
