@@ -23,6 +23,8 @@ signals:
     void done();
 
 private:
+    void invokeParser(const QByteArray &bytes);
+
     DefaultUpdater *updater;
 
     bool error = false;
