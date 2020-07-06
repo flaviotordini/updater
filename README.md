@@ -12,13 +12,15 @@ The main interface is [Updater](https://github.com/flaviotordini/updater/blob/ma
 
 ## User Interface
 
-### Dialog
-
 ### Built-in Widgets
 
-- QAction
-- QLabel
-- QPushButton
+Updater provides ready-to-use widgets:
+
+- `Updater::getAction()` returns a QAction suitable to be inserted in a QMenu.
+- `Updater::getLabel()` returns a QLabel that automatically changes its message. Typically used in the about box.
+- `Updater::getButton()` returns a QPushButton that autohides or automatically changes its function depending on the Updater status.
+
+When the user triggers the action or pushes the button a dialog will show which is dependent on the Updater implementation.
 
 ## Entension Points
 
@@ -26,16 +28,16 @@ The main interface is [Updater](https://github.com/flaviotordini/updater/blob/ma
 
 ### Parser
 
-Implement Parser to parse your own manifest format. There two ready-to-use Parsers:
+Implement [updater::Parser](https://github.com/flaviotordini/updater/blob/master/src/impl/parser.h) to parse your own manifest format. There two ready-to-use Parsers:
 
-- TODO [updater::AppCastParser](https://github.com/flaviotordini/updater/blob/master/src/impl/appcastparser.h)
+- TODO [updater::AppCastParser](https://github.com/flaviotordini/updater/blob/master/src/impl/appcastparser.h). This the AppCast format also used by Sparkle. It's a RSS feed with Sparkle extensions.
 - [updater::SimpleXmlParser](https://github.com/flaviotordini/updater/blob/master/src/impl/simplexmlparser.h). This is a very simple XML format
 
 ### Installer
 
-Installer is the abstraction that is responsible to prepare and run the updater process. Currently the only available Installer implementation is [updater::RunInstaller](https://github.com/flaviotordini/updater/blob/master/src/impl/runinstaller.h). It just runs an executable update payload, optionally with arguments.
+[updater::Installer](https://github.com/flaviotordini/updater/blob/master/src/impl/installer.h) is the abstraction responsible for preparing and running the update process. Currently the only available Installer implementation is [updater::RunInstaller](https://github.com/flaviotordini/updater/blob/master/src/impl/runinstaller.h). It just runs an executable update payload, optionally with arguments.
 
-Installer can be implemented in other ways, for example an Installer that unzips a payload and moves files. Or one that invokes an update helper.
+Installer can be implemented in other ways, for example an Installer that unzips a payload and moves files. Or one that invokes an update helper. Another idea is signature validation.
 
 ## Build Instructions
 
@@ -75,13 +77,7 @@ CONFIG += object_parallel_to_source
 
 ## Examples
 
-A basic example:
-
-```
-
-```
-
-This is a real-world example of setting up the shared Updater instance:
+Example setup of the shared Updater instance:
 
 ```
 #include "updater.h"
@@ -91,21 +87,33 @@ This is a real-world example of setting up the shared Updater instance:
 #include "defaultupdater.h"
 #endif
 
-#ifdef UPDATER_SPARKLE
-    Updater::setInstance(new updater::SparkleUpdater());
-#else
-    auto updater = new updater::DefaultUpdater();
-    updater->setManifestUrl(myAppCastUrl);
-    Updater::setInstance(updater);
-#endif
+void setupUpdater() {
+    #ifdef UPDATER_SPARKLE
+        Updater::setInstance(new updater::SparkleUpdater());
+    #else
+        auto updater = new updater::DefaultUpdater();
+        updater->setManifestUrl(myAppCastUrl);
+        Updater::setInstance(updater);
+    #endif
+}
+```
 
+Updater provides a QAction instance ready to be used in a menu.
+
+```
+myMenu->addAction(Updater::instance().getAction());
 ```
 
 In the About box you can use the standard widgets provided by Updater. A QLabel and a QPushButton.
 
 ```
-
+myLayout->addWidget(Updater::instance().getLabel());
+myLayout->addWidget(Updater::instance().getButton());
 ```
+
+## Security
+
+Always serve your updates via HTTPS.
 
 ## License
 
@@ -117,4 +125,3 @@ For commercial projects I ask for a one-time license fee, contact me at flavio.t
 - remove dependency on http lib
 - Appcast parser
 - Finish README
-- Finish Dialog UI
