@@ -98,8 +98,6 @@ QWidget *Dialog::setupDownloadWidget() {
     if (downloader) {
         connect(downloader, &Downloader::progress, downloadWidget, &DownloadWidget::setProgress);
         connect(downloader, &Downloader::error, downloadWidget, &DownloadWidget::setErrorMessage);
-        // connect(downloader, &Downloader::fileReady, downloadWidget,
-        // &DownloadWidget::setProgress);
         connect(this, &QDialog::rejected, downloader, &Downloader::stop);
     }
 
