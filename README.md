@@ -122,6 +122,5 @@ You can use this library under the GPLv3 license terms. If you do, you're welcom
 For commercial projects I ask for a one-time license fee, contact me at flavio.tordini@gmail.com
 
 ## TODO
-- remove dependency on http lib
 - Appcast parser
 - Finish README
