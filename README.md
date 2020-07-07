@@ -28,9 +28,9 @@ When the user triggers the action or pushes the button a dialog will show which 
 
 ### Parser
 
-Implement [updater::Parser](https://github.com/flaviotordini/updater/blob/master/src/impl/parser.h) to parse your own manifest format. There two ready-to-use Parsers:
+Implement [updater::Parser](https://github.com/flaviotordini/updater/blob/master/src/impl/parser.h) to parse your own manifest format. There are two ready-to-use parsers:
 
-- TODO [updater::AppcastParser](https://github.com/flaviotordini/updater/blob/master/src/impl/appcastparser.h). This the appcast format also used by Sparkle. It's a RSS feed with Sparkle extensions.
+- [updater::AppcastParser](https://github.com/flaviotordini/updater/blob/master/src/impl/appcastparser.h). This the appcast format also used by Sparkle. It's a RSS feed with Sparkle extensions.
 - [updater::SimpleXmlParser](https://github.com/flaviotordini/updater/blob/master/src/impl/simplexmlparser.h). This is a very simple XML format
 
 ### Installer
@@ -120,7 +120,3 @@ Always serve your manifest files and binary updates via HTTPS.
 You can use this library under the GPLv3 license terms. If you do, you're welcome contributing your changes and fixes. Donations are welcome at https://flavio.tordini.org/donate
 
 For commercial projects I ask for a one-time license fee, contact me at flavio.tordini@gmail.com
-
-## TODO
-- Appcast parser
-- Finish README
