@@ -4,7 +4,7 @@
 
 namespace updater {
 
-SimpleXmlParser::SimpleXmlParser(DefaultUpdater *parent) : Parser(parent) {}
+SimpleXmlParser::SimpleXmlParser() {}
 
 void SimpleXmlParser::parse(const QByteArray &bytes) {
     error = false;

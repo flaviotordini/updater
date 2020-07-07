@@ -22,10 +22,9 @@ class DefaultUpdater;
  * </release>
  */
 class SimpleXmlParser : public Parser {
-    Q_OBJECT
 
 public:
-    explicit SimpleXmlParser(DefaultUpdater *parent);
+    explicit SimpleXmlParser();
     void parse(const QByteArray &bytes);
 
     void setRootElementName(const QString &value) { rootElementName = value; }

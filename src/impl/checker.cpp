@@ -1,8 +1,8 @@
 #include "checker.h"
 
+#include "appcastparser.h"
 #include "defaultupdater.h"
 #include "parser.h"
-#include "simplexmlparser.h"
 
 #ifdef HTTP
 #include "http.h"
@@ -63,9 +63,9 @@ qint64 Checker::getLastCheck() {
 void Checker::invokeParser(const QByteArray &bytes) {
     auto parser = updater->getParser();
     if (!parser) {
-        // default to SimpleXmlParser
-        SimpleXmlParser simpleParser(updater);
-        simpleParser.parse(bytes);
+        AppcastParser defaultParser;
+        defaultParser.setUpdater(updater);
+        defaultParser.parse(bytes);
     } else {
         parser->parse(bytes);
     }

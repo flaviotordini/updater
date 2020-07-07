@@ -21,22 +21,23 @@ QAction *Updater::getAction() {
         action->setMenuRole(QAction::ApplicationSpecificRole);
         connect(action, &QAction::triggered, this, &Updater::onUserAction);
         auto onStatusChange = [this](Updater::Status status) {
+            QString v = displayVersion.isEmpty() ? version : displayVersion;
             QString t;
             switch (status) {
             case Updater::Status::UpToDate:
                 t = tr("Check for Updates...");
                 break;
             case Updater::Status::UpdateAvailable:
-                t = tr("Version %1 is available...").arg(version);
+                t = tr("Version %1 is available...").arg(v);
                 break;
             case Updater::Status::DownloadingUpdate:
-                t = tr("Downloading version %1...").arg(version);
+                t = tr("Downloading version %1...").arg(v);
                 break;
             case Updater::Status::UpdateDownloaded:
                 t = tr("Restart to Update");
                 break;
             case Updater::Status::UpdateDownloadFailed:
-                t = tr("Version %1 download failed").arg(version);
+                t = tr("Version %1 download failed").arg(v);
                 break;
             }
             action->setText(t);
@@ -87,13 +88,14 @@ QLabel *Updater::getLabel() {
         label = new QLabel();
         connect(label, &QWidget::destroyed, this, [this] { label = nullptr; });
         auto onStatusChange = [this](Updater::Status status) {
+            QString v = displayVersion.isEmpty() ? version : displayVersion;
             QString t;
             switch (status) {
             case Updater::Status::UpToDate:
                 t = tr("You have the latest version.");
                 break;
             case Updater::Status::UpdateAvailable:
-                t = tr("Version %1 is available.").arg(version);
+                t = tr("Version %1 is available.").arg(v);
                 break;
             case Updater::Status::DownloadingUpdate:
                 t = tr("Downloading update...");
@@ -102,7 +104,7 @@ QLabel *Updater::getLabel() {
                 t = tr("An update has been downloaded and is ready to be installed.");
                 break;
             case Updater::Status::UpdateDownloadFailed:
-                t = tr("Version %1 download failed").arg(version);
+                t = tr("Version %1 download failed").arg(v);
                 break;
             }
             label->setText(t);

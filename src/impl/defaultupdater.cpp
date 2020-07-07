@@ -4,6 +4,7 @@
 #include "dialog.h"
 #include "downloader.h"
 #include "installer.h"
+#include "parser.h"
 #include "runinstaller.h"
 
 namespace updater {
@@ -35,6 +36,11 @@ DefaultUpdater::DefaultUpdater() {
 void DefaultUpdater::setCheckInterval(const qint64 &value) {
     checkInterval = value;
     checkTimer->setInterval(checkInterval);
+}
+
+void DefaultUpdater::setParser(Parser *value) {
+    parser = value;
+    parser->setUpdater(this);
 }
 
 void DefaultUpdater::checkAndShowUI() {

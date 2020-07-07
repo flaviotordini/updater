@@ -37,7 +37,7 @@ public:
     void setInstaller(Installer *value) { installer = value; }
 
     Parser *getParser() const { return parser; }
-    void setParser(Parser *value) { parser = value; }
+    void setParser(Parser *value);
 
     Downloader *downloadUpdate();
     Downloader *getDownloader() const { return downloader; }

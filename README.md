@@ -30,7 +30,7 @@ When the user triggers the action or pushes the button a dialog will show which 
 
 Implement [updater::Parser](https://github.com/flaviotordini/updater/blob/master/src/impl/parser.h) to parse your own manifest format. There two ready-to-use Parsers:
 
-- TODO [updater::AppCastParser](https://github.com/flaviotordini/updater/blob/master/src/impl/appcastparser.h). This the AppCast format also used by Sparkle. It's a RSS feed with Sparkle extensions.
+- TODO [updater::AppcastParser](https://github.com/flaviotordini/updater/blob/master/src/impl/appcastparser.h). This the appcast format also used by Sparkle. It's a RSS feed with Sparkle extensions.
 - [updater::SimpleXmlParser](https://github.com/flaviotordini/updater/blob/master/src/impl/simplexmlparser.h). This is a very simple XML format
 
 ### Installer
@@ -92,7 +92,7 @@ void setupUpdater() {
         Updater::setInstance(new updater::SparkleUpdater());
     #else
         auto updater = new updater::DefaultUpdater();
-        updater->setManifestUrl(myAppCastUrl);
+        updater->setManifestUrl(myAppcastUrl);
         Updater::setInstance(updater);
     #endif
 }
@@ -113,7 +113,7 @@ myLayout->addWidget(Updater::instance().getButton());
 
 ## Security
 
-Always serve your updates via HTTPS.
+Always serve your manifest files and binary updates via HTTPS.
 
 ## License
 

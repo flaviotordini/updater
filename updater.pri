@@ -28,7 +28,8 @@ macx:!contains(DEFINES, UPDATER_NO_SPARKLE) {
     $$PWD/src/impl/installer.h \
     $$PWD/src/impl/parser.h \
     $$PWD/src/impl/runinstaller.h \
-    $$PWD/src/impl/simplexmlparser.h
+    $$PWD/src/impl/simplexmlparser.h \
+    $$PWD/src/impl/appcastparser.h
 
     SOURCES +=  \
     $$PWD/src/impl/checker.cpp \
@@ -36,5 +37,6 @@ macx:!contains(DEFINES, UPDATER_NO_SPARKLE) {
     $$PWD/src/impl/dialog.cpp \
     $$PWD/src/impl/downloader.cpp \
     $$PWD/src/impl/runinstaller.cpp \
-    $$PWD/src/impl/simplexmlparser.cpp
+    $$PWD/src/impl/simplexmlparser.cpp \
+    $$PWD/src/impl/appcastparser.cpp
 }

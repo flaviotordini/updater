@@ -36,6 +36,10 @@ public:
     // This should be protected
     void setVersion(const QString &value) { version = value; }
 
+    QString getDisplayVersion() const { return displayVersion; }
+    // This should be protected
+    void setDisplayVersion(const QString &value) { displayVersion = value; }
+
     virtual bool getImmediateInstallAndRelaunch() const { return immediateInstallAndRelaunch; }
     virtual void setImmediateInstallAndRelaunch(bool value) { immediateInstallAndRelaunch = value; }
 
@@ -63,6 +67,7 @@ private:
     bool immediateInstallAndRelaunch = false;
     Status status = Status::UpToDate;
     QString version;
+    QString displayVersion;
 };
 
 #endif // UPDATER_H
