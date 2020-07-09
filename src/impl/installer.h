@@ -24,7 +24,7 @@ signals:
     void error(const QString &message);
 
 protected:
-    DefaultUpdater *updater;
+    DefaultUpdater *updater = nullptr;
 };
 
 } // namespace updater

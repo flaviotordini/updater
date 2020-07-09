@@ -21,7 +21,7 @@ public:
 
 protected:
     Parser(){};
-    DefaultUpdater *updater;
+    DefaultUpdater *updater = nullptr;
     bool error = false;
     QString errorMessage;
 };
