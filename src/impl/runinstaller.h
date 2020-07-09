@@ -16,7 +16,7 @@ class RunInstaller : public Installer {
     Q_OBJECT
 
 public:
-    RunInstaller(DefaultUpdater *updater);
+    RunInstaller();
     void setArguments(const QStringList &value) { arguments = value; };
     void start(const QString &filename);
 

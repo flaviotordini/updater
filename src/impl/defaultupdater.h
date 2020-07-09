@@ -34,7 +34,7 @@ public:
     /// manifest
     void setDownloadUrl(const QUrl &value) { downloadUrl = value; }
 
-    void setInstaller(Installer *value) { installer = value; }
+    void setInstaller(Installer *value);
 
     Parser *getParser() const { return parser; }
     void setParser(Parser *value);

@@ -15,7 +15,9 @@ class Installer : public QObject {
     Q_OBJECT
 
 public:
-    Installer(DefaultUpdater *updater) : updater(updater){};
+    Installer(){};
+    void setUpdater(DefaultUpdater *value) { updater = value; }
+
     virtual void start(const QString &filename) = 0;
 
 signals:

@@ -38,6 +38,11 @@ void DefaultUpdater::setCheckInterval(const qint64 &value) {
     checkTimer->setInterval(checkInterval);
 }
 
+void DefaultUpdater::setInstaller(Installer *value) {
+    installer = value;
+    installer->setUpdater(this);
+}
+
 void DefaultUpdater::setParser(Parser *value) {
     parser = value;
     parser->setUpdater(this);
@@ -84,7 +89,8 @@ void DefaultUpdater::checkWithoutUI() {
 
 void DefaultUpdater::update() {
     if (!installer) {
-        installer = new RunInstaller(this);
+        installer = new RunInstaller();
+        installer->setUpdater(this);
     }
     connect(installer, &Installer::error, this, [](auto message) { qWarning() << message; });
     installer->start(downloadedFilename);

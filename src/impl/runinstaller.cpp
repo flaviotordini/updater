@@ -6,7 +6,7 @@
 
 namespace updater {
 
-RunInstaller::RunInstaller(DefaultUpdater *updater) : Installer(updater) {}
+RunInstaller::RunInstaller() : Installer() {}
 
 void RunInstaller::start(const QString &filename) {
     // TODO use updaterArgs for silent install on Windows
