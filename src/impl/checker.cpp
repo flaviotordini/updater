@@ -70,9 +70,9 @@ void Checker::invokeParser(const QByteArray &bytes) {
         parser->parse(bytes);
     }
 
-    bool shouldUpdate =
+    bool versionsDontMatch =
             !updater->getVersion().isEmpty() && updater->getVersion() != updater->getLocalVersion();
-    if (shouldUpdate) {
+    if (versionsDontMatch && updater->getStatus() != Updater::Status::UpdateDownloaded) {
         if (updater->getAutomaticDownload()) {
             updater->downloadUpdate();
         } else {
