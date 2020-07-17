@@ -9,8 +9,12 @@ namespace updater {
 RunInstaller::RunInstaller() : Installer() {}
 
 void RunInstaller::start(const QString &filename) {
-    // TODO use updaterArgs for silent install on Windows
-    QDesktopServices::openUrl(QUrl("file:///" + filename));
+    if (arguments.isEmpty()) {
+        QDesktopServices::openUrl(QUrl("file:///" + filename));
+    } else {
+        QProcess *process = new QProcess(this);
+        process->startDetached(filename, arguments);
+    }
 }
 
 } // namespace updater
