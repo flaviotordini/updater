@@ -7,8 +7,6 @@
 
 namespace updater {
 
-class Updater;
-
 /**
  * Installer implementation that simply runs the downloaded update
  */

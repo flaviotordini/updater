@@ -2,8 +2,6 @@
 
 #include <QDesktopServices>
 
-#include "defaultupdater.h"
-
 namespace updater {
 
 RunInstaller::RunInstaller() : Installer() {}
