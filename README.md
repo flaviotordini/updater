@@ -33,7 +33,7 @@ Implement [updater::Parser](https://github.com/flaviotordini/updater/blob/master
 - [updater::AppcastParser](https://github.com/flaviotordini/updater/blob/master/src/impl/appcastparser.h). This the appcast format also used by Sparkle. It's a RSS feed with Sparkle extensions.
 - [updater::SimpleXmlParser](https://github.com/flaviotordini/updater/blob/master/src/impl/simplexmlparser.h). This is a very simple XML format
 
-Set the desired Parser implementation using `updater::DefaultUpdater::setParser`
+Set the desired Parser implementation using `updater::DefaultUpdater::setParser`. The default is [updater::AppcastParser].
 
 ### Installer
 
@@ -41,7 +41,7 @@ Set the desired Parser implementation using `updater::DefaultUpdater::setParser`
 
 Installer can be implemented in other ways, for example an Installer that unzips a payload and moves files. Or one that invokes an update helper. Another idea is signature validation.
 
-Set the desired Installer implementation using `updater::DefaultUpdater::setInstaller`
+Set the desired Installer implementation using `updater::DefaultUpdater::setInstaller`. The default is [updater::RunInstaller].
 
 ## Build Instructions
 
