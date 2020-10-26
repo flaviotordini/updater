@@ -4,8 +4,8 @@
 #include "dialog.h"
 #include "downloader.h"
 #include "installer.h"
+#include "openinstaller.h"
 #include "parser.h"
-#include "runinstaller.h"
 
 namespace updater {
 
@@ -89,7 +89,7 @@ void DefaultUpdater::checkWithoutUI() {
 
 void DefaultUpdater::update() {
     if (!installer) {
-        installer = new RunInstaller();
+        installer = new OpenInstaller();
         installer->setUpdater(this);
     }
     connect(installer, &Installer::error, this, [](auto message) { qWarning() << message; });
