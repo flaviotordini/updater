@@ -1,0 +1,48 @@
+{
+    "$schema": "http://qt.io/schema/extension-schema-v1#",
+    "title": "Updater",
+    "extensionType": [
+        "library"
+    ],
+    "version": "1",
+    "vendor": {
+        "name": "Flavio Tordini",
+        "url": "https://flavio.tordini.org"
+    },
+    "contact": "Flavio Tordini <flavio.tordini@gmail.com>",
+    "copyright": [
+        "Flavio Tordini"
+    ],
+    "author": "Flavio Tordini",
+    "icon": "https://flavio.tordini.org/favicon-196x196.png",
+    "licenses": [
+        {
+            "licenseType": "GPLv3",
+            "licenseUrl": "https://opensource.org/licenses/GPL-3.0"
+        }
+    ],
+    "created": "2020-07-03",
+    "platforms": [
+        "Windows",
+        "Linux",
+        "macOS"
+    ],
+    "qtVersions": [
+        "5.10.0-or-later"
+    ],
+    "tags": [
+        "updater,update,deploy,release,tools,utility"
+    ],
+    "price": {
+        "listprice": 0
+    },
+    "support": "flavio.tordini@gmail.com",
+    "bugUrl": "https://github.com/flaviotordini/updater/issues",
+    "sourceRepoUrl": "https://github.com/flaviotordini/updater",
+    "userManuals": [
+        "https://github.com/flaviotordini/updater/blob/master/README.md"
+    ],
+    "dependencies": [
+        "Network"
+    ]
+}
