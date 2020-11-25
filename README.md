@@ -1,6 +1,6 @@
 # An updater for Qt apps
 
-This is an extensible updater for Qt apps. It can wrap Sparkle on macOS and use its own implementation on Windows and Linux. I use it in my apps at https://flavio.tordini.org .
+This is an extensible updater for Qt apps. It can wrap [Sparkle](https://sparkle-project.org/) on macOS and use its own implementation on Windows and Linux. I use it in my apps at https://flavio.tordini.org .
 
 ## Design
 
