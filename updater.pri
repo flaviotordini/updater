@@ -16,7 +16,7 @@ macx:!contains(DEFINES, UPDATER_NO_SPARKLE) {
     OBJECTIVE_SOURCES += $$PWD/src/sparkle/sparkleupdater.mm
 } else {
     DEFINES += UPDATER_DEFAULT
-    QT *= network
+    QT *= network widgets
     INCLUDEPATH += $$PWD/src/impl
     DEPENDPATH += $$PWD/src/impl
 
