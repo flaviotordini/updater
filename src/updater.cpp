@@ -109,7 +109,7 @@ QLabel *Updater::getLabel() {
             }
             label->setText(t);
         };
-        connect(this, &Updater::statusChanged, this, onStatusChange);
+        connect(this, &Updater::statusChanged, label, onStatusChange);
         onStatusChange(status);
     }
     return label;
