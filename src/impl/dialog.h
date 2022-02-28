@@ -15,7 +15,7 @@ public:
     DownloadWidget(const QString &message, QDialog *parent = 0);
 
 public slots:
-    void setProgress(int percent) { progressBar->setValue(percent); }
+    void setProgress(int percent);
     void setErrorMessage(const QString &message);
 
 private:

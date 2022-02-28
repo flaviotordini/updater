@@ -40,6 +40,10 @@ DownloadWidget::DownloadWidget(const QString &message, QDialog *parent)
     layout->addWidget(errorLabel);
 }
 
+void DownloadWidget::setProgress(int percent) {
+    progressBar->setValue(percent);
+}
+
 void DownloadWidget::setErrorMessage(const QString &message) {
     errorLabel->setText(message);
     errorLabel->show();
