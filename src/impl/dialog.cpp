@@ -113,6 +113,7 @@ QWidget *Dialog::setupDownloadWidget() {
 
 void Dialog::showWidget(QWidget *widget) {
     QWidget *currentWidget = stackedLayout->currentWidget();
+    if (currentWidget == widget) return;
     if (currentWidget) {
         stackedLayout->removeWidget(currentWidget);
         currentWidget->deleteLater();
