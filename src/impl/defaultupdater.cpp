@@ -93,6 +93,8 @@ void DefaultUpdater::update() {
         installer->setUpdater(this);
     }
     connect(installer, &Installer::error, this, [](auto message) { qWarning() << message; });
+    connect(installer, &Installer::finished, this,
+            [this]() { setStatus(Updater::Status::UpToDate); });
     installer->start(downloadedFilename);
 }
 
@@ -109,6 +111,7 @@ Downloader *DefaultUpdater::downloadUpdate() {
         downloader->deleteLater();
         downloader = nullptr;
         downloadedFilename = filename;
+        setStatus(Updater::Status::UpdateDownloaded);
 
         if (getImmediateInstallAndRelaunch()) {
             update();

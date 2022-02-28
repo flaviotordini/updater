@@ -22,6 +22,7 @@ public:
 
 signals:
     void error(const QString &message);
+    void finished();
 
 protected:
     DefaultUpdater *updater = nullptr;

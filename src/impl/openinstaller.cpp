@@ -8,6 +8,7 @@ OpenInstaller::OpenInstaller() {}
 
 void updater::OpenInstaller::start(const QString &filename) {
     if (!QDesktopServices::openUrl(QUrl("file:///" + filename))) emit error("Cannot start update");
+    emit finished();
 }
 
 } // namespace updater

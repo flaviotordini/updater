@@ -42,6 +42,7 @@ void RunInstaller::start(const QString &filename) {
                         QProcess *restartProcess = new QProcess(this);
                         restartProcess->startDetached(qApp->applicationFilePath(), {});
                     }
+                    emit finished();
                 });
         qDebug() << "Executing" << command << processedArguments;
         process->start(command, processedArguments);
@@ -54,6 +55,7 @@ void RunInstaller::start(const QString &filename) {
             // Fallback to opening the downloaded payload
             QDesktopServices::openUrl(QUrl("file:///" + filename));
         }
+        emit finished();
     }
 }
 
