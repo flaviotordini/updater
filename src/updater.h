@@ -21,6 +21,7 @@ public:
     QLabel *getLabel();
 
     enum class Status {
+        Unknown,
         UpToDate,
         UpdateAvailable,
         DownloadingUpdate,
@@ -72,7 +73,7 @@ private:
     bool automaticDownload = true;
     bool immediateInstallAndRelaunch = false;
     bool relaunchAfterInstall = false;
-    Status status = Status::UpToDate;
+    Status status = Status::Unknown;
     QString version;
     QString displayVersion;
 };

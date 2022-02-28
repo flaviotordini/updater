@@ -57,6 +57,7 @@ QPushButton *Updater::getButton() {
             QString t;
             bool visible = true;
             switch (status) {
+            case Updater::Status::Unknown:
             case Updater::Status::UpToDate:
                 t = tr("Check for Updates");
                 break;
@@ -91,6 +92,9 @@ QLabel *Updater::getLabel() {
             QString v = displayVersion.isEmpty() ? version : displayVersion;
             QString t;
             switch (status) {
+            case Updater::Status::Unknown:
+                t = tr("Didn't check for updates.");
+                break;
             case Updater::Status::UpToDate:
                 t = tr("You have the latest version.");
                 break;
