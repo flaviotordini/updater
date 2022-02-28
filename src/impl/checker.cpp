@@ -78,6 +78,8 @@ void Checker::invokeParser(const QByteArray &bytes) {
         } else {
             updater->setStatus(Updater::Status::UpdateAvailable);
         }
+    } else {
+        updater->setStatus(Updater::Status::UpToDate);
     }
 
     QSettings settings;

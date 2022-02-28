@@ -108,7 +108,7 @@ QLabel *Updater::getLabel() {
                 t = tr("An update has been downloaded and is ready to be installed.");
                 break;
             case Updater::Status::UpdateDownloadFailed:
-                t = tr("Version %1 download failed").arg(v);
+                t = tr("Version %1 download failed.").arg(v);
                 break;
             }
             label->setText(t);
