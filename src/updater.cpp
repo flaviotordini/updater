@@ -77,7 +77,7 @@ QPushButton *Updater::getButton() {
             button->setText(t);
             button->setVisible(visible);
         };
-        connect(this, &Updater::statusChanged, this, onStatusChange);
+        connect(this, &Updater::statusChanged, button, onStatusChange);
         onStatusChange(status);
     }
     return button;
