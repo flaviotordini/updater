@@ -27,6 +27,9 @@ DownloadWidget::DownloadWidget(const QString &message, QDialog *parent)
 
     QPushButton *cancelButton = buttonBox->addButton(QDialogButtonBox::Cancel);
     connect(cancelButton, &QPushButton::clicked, this, [parent] { parent->reject(); });
+    connect(progressBar, &QProgressBar::valueChanged, this, [cancelButton](int percent) {
+        if (percent == 100) cancelButton->hide();
+    });
 
     QPushButton *closeButton = buttonBox->addButton(QDialogButtonBox::Ok);
     closeButton->setDefault(true);
