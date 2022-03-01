@@ -10,7 +10,6 @@ RunInstaller::RunInstaller() : Installer() {}
 
 void RunInstaller::start(const QString &filename) {
     auto processedArguments = arguments;
-    processedArguments << autoRestartArguments;
 
     if (command.isEmpty()) {
         command = filename;

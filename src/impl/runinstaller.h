@@ -36,7 +36,6 @@ private:
     QStringList arguments;
     bool runAsAdmin = false;
     bool autoRestart = false;
-    QStringList autoRestartArguments;
 };
 
 } // namespace updater
