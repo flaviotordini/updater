@@ -121,8 +121,6 @@ Downloader *DefaultUpdater::downloadUpdate() {
         } else {
             connect(qApp, &QCoreApplication::aboutToQuit, this, [this] { update(); });
         }
-
-        setStatus(Updater::Status::UpdateDownloaded);
     });
 
     connect(downloader, &Downloader::error, [this](auto message) {
