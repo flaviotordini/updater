@@ -17,6 +17,7 @@ namespace updater {
 Checker::Checker(DefaultUpdater *updater, QObject *parent) : QObject(parent), updater(updater) {}
 
 void Checker::check() {
+    qDebug() << "Checking for update" << updater->getManifestUrl();
     error = false;
     errorMessage.clear();
 
