@@ -17,17 +17,23 @@ public:
     RunInstaller();
     void setCommand(const QString &value) { command = value; }
     void setArguments(const QStringList &value) { arguments = value; };
+
     /**
-     * Currently supported on Linux only using PackageKit (pkexec)
+     * Currently supported on Linux only using pkexec. Does not work together with fork.
      */
     void setRunAsAdmin(bool value) { runAsAdmin = value; }
+
     /**
      * This will cause the update process to run while the app is still running. Then the app will
-     * self-restart.
+     * self-restart. Does not work together with fork.
      */
     void setAutoRestart(bool value) { autoRestart = value; }
 
-    void setRelaunchArguments(const QStringList &value) { autoRestartArguments = value; }
+    /**
+     * When true the update process will be detached from the app process (i.e. the app can quit
+     * without killing it). Does not work together with autoRestart.
+     */
+    void setFork(bool value) { fork = value; }
 
     void start(const QString &filename);
 
@@ -36,6 +42,7 @@ private:
     QStringList arguments;
     bool runAsAdmin = false;
     bool autoRestart = false;
+    bool fork = false;
 };
 
 } // namespace updater

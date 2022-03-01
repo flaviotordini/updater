@@ -113,7 +113,9 @@ Downloader *DefaultUpdater::downloadUpdate() {
         downloadedFilename = filename;
         setStatus(Updater::Status::UpdateDownloaded);
 
-        if (getImmediateInstallAndRelaunch()) {
+        if (getImmediateInstallWithoutRelaunch()) {
+            update();
+        } else if (getImmediateInstallAndRelaunch()) {
             update();
             qApp->quit();
         } else {

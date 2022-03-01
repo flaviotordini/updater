@@ -128,8 +128,6 @@ void Updater::setStatus(Status v) {
 
 void Updater::onUserAction() {
     if (status == Updater::Status::UpdateDownloaded) {
-        // tell Installer we want the app to be restarted
-        setRelaunchAfterInstall(true);
         // update will be installed on quit
         qApp->quit();
         return;

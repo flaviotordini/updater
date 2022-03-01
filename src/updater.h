@@ -41,15 +41,19 @@ public:
     // This should be protected
     void setDisplayVersion(const QString &value) { displayVersion = value; }
 
-    /// true if the app can be stopped and relaunched without user interaction
+    /// true if the app can be updated immediately while running (default: false)
+    virtual bool getImmediateInstallWithoutRelaunch() const {
+        return immediateInstallWithoutRelaunch;
+    }
+    virtual void setImmediateInstallWithoutRelaunch(bool value) {
+        immediateInstallWithoutRelaunch = value;
+    }
+
+    /// true if the app can be stopped and relaunched immediately (default: false)
     virtual bool getImmediateInstallAndRelaunch() const { return immediateInstallAndRelaunch; }
     virtual void setImmediateInstallAndRelaunch(bool value) { immediateInstallAndRelaunch = value; }
 
-    /// true if the app has to be relaunched after the update has completed
-    virtual bool getRelaunchAfterInstall() const { return relaunchAfterInstall; }
-    virtual void setRelaunchAfterInstall(bool value) { relaunchAfterInstall = value; }
-
-    /// when true an available update will be downloaded without user interaction
+    /// when true an available update will be downloaded without user interaction (default: true)
     virtual bool getAutomaticDownload() const { return automaticDownload; }
     virtual void setAutomaticDownload(bool value) { automaticDownload = value; }
 
@@ -72,7 +76,7 @@ private:
 
     bool automaticDownload = true;
     bool immediateInstallAndRelaunch = false;
-    bool relaunchAfterInstall = false;
+    bool immediateInstallWithoutRelaunch = false;
     Status status = Status::Unknown;
     QString version;
     QString displayVersion;

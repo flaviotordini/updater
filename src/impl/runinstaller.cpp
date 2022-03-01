@@ -30,13 +30,13 @@ void RunInstaller::start(const QString &filename) {
         this->emit error("Update error: " + QVariant::fromValue(error).toString());
     });
 
-    if (autoRestart && updater->getRelaunchAfterInstall()) {
+    if (!fork) {
         auto thread = new QThread;
         process->moveToThread(thread);
         connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
                 [this](int exitCode, QProcess::ExitStatus exitStatus) {
                     qDebug() << "finished" << exitCode << exitStatus;
-                    if (exitCode == 0 && exitStatus == QProcess::NormalExit) {
+                    if (autoRestart && exitCode == 0 && exitStatus == QProcess::NormalExit) {
                         qDebug() << "Restarting" << qApp->applicationFilePath();
                         QProcess *restartProcess = new QProcess(this);
                         restartProcess->startDetached(qApp->applicationFilePath(), {});
