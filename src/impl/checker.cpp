@@ -71,6 +71,7 @@ void Checker::invokeParser(const QByteArray &bytes) {
         parser->parse(bytes);
     }
 
+    qDebug() << "Comparing versions" << updater->getLocalVersion() << updater->getVersion();
     bool versionsDontMatch =
             !updater->getVersion().isEmpty() && updater->getVersion() != updater->getLocalVersion();
     if (versionsDontMatch && updater->getStatus() != Updater::Status::UpdateDownloaded) {
