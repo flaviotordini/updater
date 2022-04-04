@@ -36,7 +36,7 @@ void RunInstaller::start(const QString &filename) {
         connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
                 [this](int exitCode, QProcess::ExitStatus exitStatus) {
                     qDebug() << "finished" << exitCode << exitStatus;
-                    if (autoRestart && exitCode == 0 && exitStatus == QProcess::NormalExit) {
+                    if (autoRestart) {
                         qDebug() << "Restarting" << qApp->applicationFilePath();
                         QProcess *restartProcess = new QProcess(this);
                         restartProcess->startDetached(qApp->applicationFilePath(), {});
