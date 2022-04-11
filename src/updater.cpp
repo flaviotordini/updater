@@ -24,6 +24,7 @@ QAction *Updater::getAction() {
             QString v = displayVersion.isEmpty() ? version : displayVersion;
             QString t;
             switch (status) {
+            case Updater::Status::Unknown:
             case Updater::Status::UpToDate:
                 t = tr("Check for Updates...");
                 break;
