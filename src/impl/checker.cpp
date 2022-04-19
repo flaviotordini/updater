@@ -30,6 +30,7 @@ void Checker::check() {
             qWarning() << "Update check failed" << reply.statusCode() << reply.reasonPhrase();
             error = true;
             errorMessage = reply.reasonPhrase();
+            updater->setStatus(Updater::Status::UpToDate);
             emit done();
         }
     });
@@ -48,6 +49,7 @@ void Checker::check() {
             qWarning() << "Update check failed" << status << msg;
             error = true;
             errorMessage = msg;
+            updater->setStatus(Updater::Status::UpToDate);
             emit done();
         }
         reply->deleteLater();
