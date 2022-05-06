@@ -12,6 +12,12 @@ macx:!contains(DEFINES, UPDATER_NO_SPARKLE) {
     DEPENDPATH += $$PWD/src/sparkle
     LIBS += -F/Library/Frameworks -framework Sparkle
     INCLUDEPATH += /Library/Frameworks/Sparkle.framework/Headers
+
+    # Hack to get the inclusion of headers working
+    # Sparkle includes stuff using <Sparkle/SUClass>
+    # We need to create a Sparkle subdir inside Sparkle-headers
+    INCLUDEPATH += /Library/Frameworks/Sparkle-headers
+
     HEADERS += $$PWD/src/sparkle/sparkleupdater.h
     OBJECTIVE_SOURCES += $$PWD/src/sparkle/sparkleupdater.mm
 } else {
