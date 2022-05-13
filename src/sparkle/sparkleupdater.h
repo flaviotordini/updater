@@ -3,6 +3,8 @@
 
 #include "updater.h"
 
+Q_FORWARD_DECLARE_OBJC_CLASS(SPUUpdater);
+
 namespace updater {
 
 class SparkleUpdater : public ::Updater {
@@ -20,6 +22,9 @@ public:
 
 protected slots:
     void update();
+
+private:
+    SPUUpdater *updater = NULL;
 };
 
 } // namespace updater

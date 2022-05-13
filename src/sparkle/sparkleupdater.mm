@@ -1,10 +1,13 @@
 #include "sparkleupdater.h"
 
+#import <SPUStandardUpdaterController.h>
+#import <SPUUpdater.h>
+#import <SPUUpdaterDelegate.h>
 #import <SUAppcastItem.h>
-#import <SUUpdater.h>
-#import <SUUpdaterDelegate.h>
 
-@interface SparkleDelegate : NSObject <SUUpdaterDelegate> {
+// https://sparkle-project.org/documentation/programmatic-setup/
+
+@interface SparkleDelegate : NSObject <SPUUpdaterDelegate> {
 }
 @end
 
@@ -16,7 +19,7 @@
     u = v;
 }
 
-- (void)updater:(SUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)item {
+- (void)updater:(SPUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)item {
     qDebug() << item.versionString;
     Q_UNUSED(updater)
     u->setVersion(QString::fromNSString(item.displayVersionString));
@@ -24,12 +27,12 @@
     // [updater installUpdatesIfAvailable];
 }
 
-- (void)updaterDidNotFindUpdate:(SUUpdater *)updater {
+- (void)updaterDidNotFindUpdate:(SPUUpdater *)updater {
     Q_UNUSED(updater)
     u->setStatus(Updater::Status::UpToDate);
 }
 
-- (void)updater:(SUUpdater *)updater
+- (void)updater:(SPUUpdater *)updater
         willDownloadUpdate:(SUAppcastItem *)item
                withRequest:(NSMutableURLRequest *)request {
     qDebug() << item.versionString << request;
@@ -37,25 +40,25 @@
     u->setStatus(Updater::Status::DownloadingUpdate);
 }
 
-- (void)updater:(SUUpdater *)updater didDownloadUpdate:(SUAppcastItem *)item {
+- (void)updater:(SPUUpdater *)updater didDownloadUpdate:(SUAppcastItem *)item {
     qDebug() << item.versionString;
     Q_UNUSED(updater)
     u->setStatus(Updater::Status::UpdateDownloaded);
 }
 
-- (void)userDidCancelDownload:(SUUpdater *)updater {
+- (void)userDidCancelDownload:(SPUUpdater *)updater {
     Q_UNUSED(updater)
     u->setStatus(Updater::Status::UpdateAvailable);
 }
 
-- (void)updater:(SUUpdater *)updater
+- (void)updater:(SPUUpdater *)updater
         failedToDownloadUpdate:(SUAppcastItem *)item
                          error:(NSError *)error {
     qDebug() << error;
     u->setStatus(Updater::Status::UpdateDownloadFailed);
 }
 
-- (void)updater:(SUUpdater *)updater
+- (void)updater:(SPUUpdater *)updater
                 willInstallUpdateOnQuit:(SUAppcastItem *)item
         immediateInstallationInvocation:(NSInvocation *)invocation {
     Q_UNUSED(updater)
@@ -63,15 +66,15 @@
     if (u->getImmediateInstallAndRelaunch()) [invocation invoke];
 }
 
-- (void)updater:(SUUpdater *)updater willInstallUpdate:(SUAppcastItem *)item {
+- (void)updater:(SPUUpdater *)updater willInstallUpdate:(SUAppcastItem *)item {
     qDebug() << item.versionString;
 }
 
-- (void)updaterWillRelaunchApplication:(SUUpdater *)updater {
+- (void)updaterWillRelaunchApplication:(SPUUpdater *)updater {
     qDebug() << updater;
 }
 
-- (void)updater:(SUUpdater *)updater didAbortWithError:(NSError *)error {
+- (void)updater:(SPUUpdater *)updater didAbortWithError:(NSError *)error {
     qDebug() << error;
 }
 
@@ -82,33 +85,37 @@ namespace updater {
 SparkleUpdater::SparkleUpdater() {
     SparkleDelegate *delegate = [[SparkleDelegate alloc] init];
     [delegate setUpdater:this];
-    [[SUUpdater sharedUpdater] setDelegate:delegate];
-    [SUUpdater sharedUpdater].automaticallyChecksForUpdates = YES;
-    [SUUpdater sharedUpdater].automaticallyDownloadsUpdates = YES;
+
+    SPUStandardUpdaterController *updaterController = [SPUStandardUpdaterController alloc];
+    [updaterController initWithStartingUpdater:YES updaterDelegate:delegate userDriverDelegate:Nil];
+
+    updater = updaterController.updater;
+    updater.automaticallyChecksForUpdates = YES;
+    updater.automaticallyDownloadsUpdates = YES;
 }
 
 bool SparkleUpdater::getAutomaticDownload() const {
-    return [SUUpdater sharedUpdater].automaticallyDownloadsUpdates;
+    return updater.automaticallyDownloadsUpdates;
 }
 
 void SparkleUpdater::setAutomaticDownload(bool value) {
-    [SUUpdater sharedUpdater].automaticallyDownloadsUpdates = value;
+    updater.automaticallyDownloadsUpdates = value;
 }
 
 void SparkleUpdater::checkAndShowUI() {
-    [[SUUpdater sharedUpdater] checkForUpdates:nil];
+    [updater checkForUpdates];
 }
 
 void SparkleUpdater::checkAndMaybeShowUI() {
-    [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
+    [updater checkForUpdatesInBackground];
 }
 
 void SparkleUpdater::checkWithoutUI() {
-    [[SUUpdater sharedUpdater] checkForUpdateInformation];
+    [updater checkForUpdateInformation];
 }
 
 void SparkleUpdater::update() {
-    [[SUUpdater sharedUpdater] installUpdatesIfAvailable];
+    qDebug() << "Not implemented";
 }
 
 } // namespace updater
