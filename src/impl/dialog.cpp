@@ -11,7 +11,7 @@ namespace updater {
 DownloadWidget::DownloadWidget(const QString &message, QDialog *parent)
     : QWidget(parent) {
     QBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(padding);
 
     QLabel *msgLabel = new QLabel(message);
@@ -60,7 +60,7 @@ Dialog::Dialog(DefaultUpdater *updater, QWidget *parent)
 
     QBoxLayout *hLayout = new QHBoxLayout(this);
     hLayout->setSizeConstraint(QLayout::SetFixedSize);
-    hLayout->setMargin(padding * 2);
+    hLayout->setContentsMargins(padding * 2, padding * 2, padding * 2, padding * 2);
     hLayout->setSpacing(padding);
 
     if (!updater->getIcon().isNull()) {
@@ -125,7 +125,7 @@ QWidget *Dialog::messageWidget() {
     QWidget *w = new QWidget();
 
     QFormLayout *layout = new QFormLayout(w);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(padding);
 
     QLabel *titleLabel =
