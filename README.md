@@ -119,6 +119,10 @@ myLayout->addWidget(Updater::instance().getButton());
 
 Always serve your manifest files and binary updates via HTTPS.
 
+## Support
+
+If you need more features or integration with your product, I'm available for hire.
+
 ## License
 
 You can use this library under the GPLv3 license terms. If you do, you're welcome contributing your changes and fixes. Donations are welcome at https://flavio.tordini.org/donate
