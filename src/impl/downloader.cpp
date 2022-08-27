@@ -12,9 +12,17 @@ void Downloader::download(const QUrl &url) {
     file.setFileName(filename);
 
     qDebug() << "Downloading" << url << "to" << filename;
+
+#ifdef HTTP
     HttpRequest req;
     req.url = url;
     reply = Http::instance().networkReply(req);
+#else
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    QNetworkRequest request;
+    request.setUrl(url);
+    reply = manager->get(request);
+#endif
 
     connect(reply, &QNetworkReply::readyRead, this, [this] {
         if (!reply) return;
