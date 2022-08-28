@@ -3,7 +3,9 @@
 
 #include <QtNetwork>
 
+#ifdef HTTP
 #include "http.h"
+#endif
 
 namespace updater {
 
