@@ -47,8 +47,7 @@ void Downloader::download(const QUrl &url) {
     });
 
     connect(reply,
-            static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(
-                    &QNetworkReply::error),
+            &QNetworkReply::errorOccurred,
             this, [this] {
                 emit error(reply->errorString());
                 reply->disconnect();
