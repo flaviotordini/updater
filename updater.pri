@@ -1,7 +1,6 @@
 DEFINES *= UPDATER
 
 INCLUDEPATH += $$PWD/src
-DEPENDPATH += $$PWD/src
 
 HEADERS += $$PWD/src/updater.h
 SOURCES += $$PWD/src/updater.cpp
@@ -9,7 +8,6 @@ SOURCES += $$PWD/src/updater.cpp
 macx:!contains(DEFINES, UPDATER_NO_SPARKLE) {
     DEFINES += UPDATER_SPARKLE
     INCLUDEPATH += $$PWD/src/sparkle
-    DEPENDPATH += $$PWD/src/sparkle
     LIBS += -F/Library/Frameworks -framework Sparkle
     INCLUDEPATH += /Library/Frameworks/Sparkle.framework/Headers
 
@@ -24,7 +22,6 @@ macx:!contains(DEFINES, UPDATER_NO_SPARKLE) {
     DEFINES += UPDATER_DEFAULT
     QT *= network widgets
     INCLUDEPATH += $$PWD/src/impl
-    DEPENDPATH += $$PWD/src/impl
 
     HEADERS += \
     $$PWD/src/impl/checker.h \
