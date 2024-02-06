@@ -73,10 +73,15 @@ void Checker::invokeParser(const QByteArray &bytes) {
         parser->parse(bytes);
     }
 
-    qDebug() << "Comparing versions" << updater->getLocalVersion() << updater->getVersion();
-    bool versionsDontMatch =
-            !updater->getVersion().isEmpty() && updater->getVersion() != updater->getLocalVersion();
-    if (versionsDontMatch && updater->getStatus() != Updater::Status::UpdateDownloaded) {
+    auto compareVersions = [](QString localVersion, QString remoteVersion) {
+        qDebug() << "Comparing versions" << localVersion << remoteVersion;
+        auto local = QVersionNumber::fromString(localVersion);
+        auto remote = QVersionNumber::fromString(remoteVersion);
+        return QVersionNumber::compare(local, remote) < 0;
+    };
+
+    bool remoteVersionIsNewer = compareVersions(updater->getLocalVersion(), updater->getVersion());
+    if (remoteVersionIsNewer && updater->getStatus() != Updater::Status::UpdateDownloaded) {
         if (updater->getAutomaticDownload()) {
             updater->downloadUpdate();
         } else {
